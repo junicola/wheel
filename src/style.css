@@ -1,0 +1,42 @@
+body {
+  background-color: #F6F2EF;
+  font-family: "Bai Jamjuree", serif;
+  font-weight: 200;
+  font-style: normal;
+
+  .title {
+    color: #858FB3;
+    font-family: "Jua", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .btn-language {
+    border: none;
+    font-family: "Jua", serif;
+    color: #858FB3;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .content {
+    .wheel {
+      /* todo */
+    }
+
+    .options-input {
+      background-color: #858FB3;
+      border: 16px solid #CDD1DC;
+      color: white;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+  .footer-text {
+    font-family: "Jua", serif;
+    color: #858FB3;
+  }
+}
