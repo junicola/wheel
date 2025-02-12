@@ -1,8 +1,12 @@
 const btnSpin = document.getElementById("btn-spin");
 const textarea = document.getElementById("options-input");
-
+const popupContainer = document.querySelector(".popup-container");
+const resultDialog = document.getElementById("resultDialog");
+const resultText = document.getElementById("resultText");
+const btnClose = document.getElementById("btn-close");
 const canvas = document.getElementById("wheel");
 const ctx = canvas.getContext("2d");
+
 let rotation = 0;
 let options = [];
 const colors = ["#ea7095", "#ecbac3", "#eeb240", "#cdd1dc", "#858FB3", ];
@@ -59,6 +63,15 @@ btnSpin.onclick = function () {
       const selectedIndex = Math.floor((360 - finalRotation) / angleStep) % total;
       const selectedOption = options[selectedIndex];
 
-      alert(`Opção selecionada: ${selectedOption}`);
+      resultText.textContent = selectedOption;
+      popupContainer.style.visibility = "visible";
+      popupContainer.style.opacity = "1";
+      resultDialog.showModal();
   }, 2000);
 };
+
+btnClose.addEventListener("click", () => {
+  popupContainer.style.visibility = "hidden";
+  popupContainer.style.opacity = "0";
+  resultDialog.close();
+});
