@@ -1,33 +1,90 @@
+:root {
+  --sandWhite: #f6f2ef;
+  --lightPurple: #cdd1dc;
+  --darkPurple: #858FB3;
+  --pink: #ea7095;
+  --rose: #ecbac3;
+  --yellow: #eeb240;
+}
+
+
 body {
-  background-color: #F6F2EF;
+  background-color: var(--sandWhite);
   font-family: "Bai Jamjuree", serif;
   font-weight: 200;
   font-style: normal;
+  margin: 0;
+  cursor:url(), auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  * {
+    box-sizing:border-box;
+  }
+
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+
+    .btn-language {
+      border: none;
+      font-family: "Jua", serif;
+      color: var(--darkPurple);
+      cursor: pointer;
+      background: transparent;
+      font-size: 1.25rem;
+    }
+  }
 
   .title {
-    color: #858FB3;
+    color: var(--darkPurple);
     font-family: "Jua", serif;
     font-weight: 400;
     font-style: normal;
-  }
-
-  .btn-language {
-    border: none;
-    font-family: "Jua", serif;
-    color: #858FB3;
-    cursor: pointer;
-    background: transparent;
+    text-align: center;
+    font-size: 3.5rem;
+    padding: 1rem 2rem;
+    margin: 0;
   }
 
   .content {
-    .wheel {
-      /* todo */
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .wheel-container {
+      .wheel-indicator {
+      }
+
+      .wheel {
+      }
+    }
+
+    .options {
+      max-width: 100%;
     }
 
     .options-input {
-      background-color: #858FB3;
-      border: 16px solid #CDD1DC;
+      background-color: var(--darkPurple);
+      border: 16px solid var(--lightPurple);
       color: white;
+      height: 400px;
+      overflow: auto;
+      border-radius: 16px;
+      font-size: 1.25rem;
+      padding: 1rem;
+      width: 100%;
+      transition: 0.3s;
+      outline: 4px solid transparent;
+
+      &:focus {
+        outline: 4px solid var(--pink);
+      }
 
       &::placeholder {
         color: rgba(255, 255, 255, 0.5);
@@ -35,8 +92,16 @@ body {
     }
   }
 
-  .footer-text {
-    font-family: "Jua", serif;
-    color: #858FB3;
+  footer {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+
+    .footer-text {
+      font-family: "Jua", serif;
+      color: var(--darkPurple);
+      font-size: 1.25rem;
+    }
   }
 }
