@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rode a roda</title>
+  <link rel="icon" type="image/x-icon" href="../assets/star.ico">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,15 +16,23 @@
 
 <body>
   <header>
-    <div>
+    <div class="star-icon">
       <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M15.7766 2.95462C12.3549 0.705035 10.6439 -0.419671 9.26874 0.248022C7.89385 0.915613 7.76517 2.93358 7.50781 6.96948L7.44112 8.01352C7.36794 9.16043 7.33135 9.73389 7.0721 10.2264C6.81318 10.719 6.36057 11.0746 5.45551 11.7864L4.63178 12.4342C1.44703 14.9384 -0.145317 16.1903 0.0849151 17.698C0.315147 19.2057 2.2155 19.9707 6.01603 21.5L6.99933 21.8959C8.07936 22.3306 8.61951 22.548 9.01494 22.9491C9.41062 23.3502 9.61708 23.8897 10.0302 24.9686L10.4061 25.9511C11.8597 29.7483 12.5865 31.6469 14.1038 31.9111C15.6214 32.1751 16.9244 30.6299 19.5307 27.5393L20.205 26.7398C20.9455 25.8617 21.3159 25.4224 21.8196 25.1779C22.3235 24.9332 22.9036 24.9108 24.0637 24.8663L25.12 24.8256C29.203 24.6682 31.2446 24.5895 31.9521 23.2451C32.6596 21.9007 31.5648 20.1807 29.3749 16.741L28.8083 15.8511C28.186 14.8738 27.875 14.3849 27.7906 13.8326C27.7063 13.2804 27.8582 12.7271 28.1623 11.6204L28.4391 10.613C29.5089 6.71832 30.044 4.7712 28.9638 3.67621C27.8836 2.58122 25.904 3.06344 21.9443 4.02829L20.9198 4.27766C19.7946 4.55185 19.2321 4.68903 18.676 4.59215C18.1203 4.49545 17.6341 4.17592 16.6617 3.53661L15.7766 2.95462Z"
           fill="#858FB3" />
       </svg>
     </div>
-    <button class="btn-language">PT</button>
+    <!-- <button class="btn-language">PT</button> -->
   </header>
+  <div class="sounds">
+    <audio id="spinSound">
+      <source src="../assets/spin.mp3" type="audio/mp3">
+    </audio>
+    <audio id="sparkleSound">
+      <source src="../assets/sparkle.mp3" type="audio/mp3">
+    </audio>
+  </div>
   <h1 class="title">Rode a roda</h1>
   <section class="content">
     <div class="wheel-container">
@@ -236,13 +245,13 @@
         </svg>                
       </div>
       <div class="wheel-indicator">
-        <svg width="69" height="77" viewBox="0 0 69 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="70" height="78" viewBox="0 0 70 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_8_67)">
-          <path d="M13 38.5L55.75 63.1817V13.8183L13 38.5Z" fill="white"/>
-          <path d="M55.25 14.6843L14 38.5L55.25 62.3157V14.6843Z" stroke="#EEB240"/>
+          <path d="M13 39L56.5 64.1147V13.8853L13 39Z" fill="white"/>
+          <path d="M56 14.7513L14 39L56 63.2487V14.7513Z" stroke="#EA7095"/>
           </g>
           <defs>
-          <filter id="filter0_d_8_67" x="0" y="0.818298" width="68.75" height="75.3634" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <filter id="filter0_d_8_67" x="0" y="0.885254" width="69.5" height="76.2295" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
           <feFlood flood-opacity="0" result="BackgroundImageFix"/>
           <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
           <feOffset/>
@@ -253,16 +262,28 @@
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_8_67" result="shape"/>
           </filter>
           </defs>
-        </svg>          
+        </svg>              
       </div>
       <canvas id="wheel" width="500" height="500"></canvas>
     </div>
     </div>
     <div class="options">
-      <textarea id="options-input" placeholder="Inserir opções"></textarea>
+      <textarea id="options-input" placeholder="Inserir uma opção por linha"></textarea>
     </div>
   </section>
   <section class="popup-container">
+    <div class="falling-stars">
+      <img src="../assets/star.png" alt="star" class="star star-1" />
+      <img src="../assets/star-1.png" alt="star" class="star star-2" />
+      <img src="../assets/star-2.png" alt="star" class="star star-3" />
+      <img src="../assets/star-3.png" alt="star" class="star star-4" />
+      <img src="../assets/star-4.png" alt="star" class="star star-5" />
+      <img src="../assets/star.png" alt="star" class="star star-6" />
+      <img src="../assets/star-1.png" alt="star" class="star star-7" />
+      <img src="../assets/star-2.png" alt="star" class="star star-8" />
+      <img src="../assets/star-3.png" alt="star" class="star star-9" />
+      <img src="../assets/star-4.png" alt="star" class="star star-10" />
+    </div>
     <dialog open id="resultDialog">
       <button id="btn-close" aria-label="Fechar">X</button>
         <p id="resultText">Opção</p>
@@ -273,5 +294,4 @@
   </footer>
 </body>
 <script src="./index.js"></script>
-
 </html>

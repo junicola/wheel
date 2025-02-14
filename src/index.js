@@ -6,6 +6,8 @@ const resultText = document.getElementById("resultText");
 const btnClose = document.getElementById("btn-close");
 const canvas = document.getElementById("wheel");
 const ctx = canvas.getContext("2d");
+const spinSound = document.getElementById("spinSound");
+const sparkleSound = document.getElementById("sparkleSound");
 
 let rotation = 0;
 let options = [];
@@ -47,27 +49,33 @@ textarea.addEventListener("input", () => {
 });
 
 btnSpin.onclick = function () {
-  const randomRotation = Math.ceil(Math.random() * 5000) + rotation;
-  rotation = randomRotation;
-
-  canvas.style.transition = "transform 2s ease-out";
-  canvas.style.transform = `rotate(${rotation}deg)`;
-
-  setTimeout(() => {
-      const total = options.length;
-      if (total === 0) return;
-
-      const finalRotation = rotation % 360;
-      const angleStep = 360 / total;
-
-      const selectedIndex = Math.floor((360 - finalRotation) / angleStep) % total;
-      const selectedOption = options[selectedIndex];
-
-      resultText.textContent = selectedOption;
-      popupContainer.style.visibility = "visible";
-      popupContainer.style.opacity = "1";
-      resultDialog.showModal();
-  }, 2000);
+  if(options.length > 0) {
+    const randomRotation = Math.ceil(Math.random() * 5000) + rotation;
+    rotation = randomRotation;
+  
+    canvas.style.transition = "transform 2s ease-out";
+    canvas.style.transform = `rotate(${rotation}deg)`;
+  
+    spinSound.play()
+    setTimeout(() => {
+        const total = options.length;
+        if (total === 0) return;
+  
+        const finalRotation = rotation % 360;
+        const angleStep = 360 / total;
+  
+        const selectedIndex = Math.floor((360 - finalRotation) / angleStep) % total;
+        const selectedOption = options[selectedIndex];
+  
+        resultText.textContent = selectedOption;
+        popupContainer.style.visibility = "visible";
+        popupContainer.style.opacity = "1";
+        sparkleSound.play()
+        resultDialog.showModal();
+    }, 2000);
+  } else {
+    document.getElementById("options-input").focus()
+  }
 };
 
 btnClose.addEventListener("click", () => {

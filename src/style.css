@@ -7,6 +7,34 @@
   --yellow: 238, 178, 64;
 }
 
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0.3;
+  }
+}
+
 
 body {
   background-color: rgb(var(--sandWhite));
@@ -29,6 +57,11 @@ body {
     flex-direction: row;
     justify-content: space-between;
     padding: 1rem 2rem;
+    gap: 1rem;
+
+    .star-icon {
+      animation: rotate 5s infinite linear;  
+    }
 
     .btn-language {
       border: none;
@@ -51,12 +84,17 @@ body {
     margin: 0;
   }
 
+  .sounds {
+    display: none;
+  }
+
   .content {
     padding: 1rem 2rem;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 2.5rem;
 
     .wheel-container {
       position: relative;
@@ -75,7 +113,7 @@ body {
         right: -30px;
         transform: translateY(-50%);
         color: #ff4141;
-        z-index: 2;
+        z-index: 3;
       }
 
       .wheel-title {
@@ -84,6 +122,7 @@ body {
         top: 30px;
         left: 50%;
         transform: translateX(-50%);
+        animation: shine 1.25s infinite linear;
       }
 
       #btn-spin {
@@ -95,34 +134,54 @@ body {
         background: transparent;
         z-index: 3;
         cursor: pointer;
+        border-radius: 100%;
+        outline: 4px solid;
+        outline-color: transparent;
+        transition: 0.5s;
+        top: -2px;
+
+        &:focus {
+          outline-color: rgb(var(--pink));
+        }
+
+        &:hover {
+          outline-color: rgba(var(--pink), 0.5);
+        }
       }
     }
 
     .options {
       max-width: 100%;
+      
+      #options-input {
+        background-color: rgb(var(--darkPurple));
+        border: 16px solid rgb(var(--lightPurple));
+        color: white;
+        min-height: 400px;
+        min-width: 400px;
+        overflow: auto;
+        border-radius: 16px;
+        font-size: 1.25rem;
+        padding: 1rem;
+        width: 100%;
+        transition: 0.3s;
+        outline: 4px solid transparent;
+        height: 100%;
+  
+        &:focus {
+          outline: 4px solid rgb(var(--pink));
+        }
+  
+        &:hover {
+          outline-color: rgba(var(--pink), 0.5);
+        }
+  
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
     }
 
-    #options-input {
-      background-color: rgb(var(--darkPurple));
-      border: 16px solid rgb(var(--lightPurple));
-      color: white;
-      height: 400px;
-      overflow: auto;
-      border-radius: 16px;
-      font-size: 1.25rem;
-      padding: 1rem;
-      width: 100%;
-      transition: 0.3s;
-      outline: 4px solid transparent;
-
-      &:focus {
-        outline: 4px solid rgb(var(--pink));
-      }
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-    }
   }
 
   .popup-container {
@@ -139,8 +198,32 @@ body {
     right: 0;
     z-index: 4;
 
-    dialog {
+    .falling-stars {
       position: relative;
+      height: 100vh;
+      overflow: hidden;
+
+      .star {
+        position: absolute;
+        top: -50px;
+        /* width: 20px;
+        height: 20px; */
+        animation: fall linear infinite;
+      }
+
+      .star-1 { animation-duration: 3s; animation-delay: 0s; left: 10%; }
+      .star-2 { animation-duration: 4s; animation-delay: 1s; left: 20%; }
+      .star-3 { animation-duration: 2.5s; animation-delay: 2s; left: 30%; }
+      .star-4 { animation-duration: 3.5s; animation-delay: 0.5s; left: 40%; }
+      .star-5 { animation-duration: 2s; animation-delay: 1.5s; left: 50%; }
+      .star-6 { animation-duration: 4.5s; animation-delay: 0.2s; left: 60%; }
+      .star-7 { animation-duration: 3s; animation-delay: 2.5s; left: 70%; }
+      .star-8 { animation-duration: 2s; animation-delay: 1s; left: 80%; }
+      .star-9 { animation-duration: 5s; animation-delay: 0.8s; left: 90%; }
+      .star-9 { animation-duration: 3.5s; animation-delay: 1.6s; left: 100%; }
+    }
+
+    dialog {
       background: rgb(var(--lightPurple));
       color: rgb(var(--darkPurple));
       font-family: "Bai Jamjuree", serif;
@@ -150,10 +233,12 @@ body {
       border-radius: 1rem;
       border: 2px solid rgb(var(--darkPurple));
       outline: 5px solid rgba(var(--pink), 0.4);
-      min-width: 350px;
+      min-width: 450px;
+      min-height: 200px;
       text-align: center;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       margin-block: 0;
 
       #resultText {
@@ -174,6 +259,16 @@ body {
         right: 10px;
         top: 10px;
         cursor: pointer;
+        transition: 0.3s;
+        outline: 4px solid transparent;
+        
+        &:focus {
+          outline: 4px solid rgb(var(--pink));
+        }
+  
+        &:hover {
+          outline-color: rgba(var(--pink), 0.5);
+        }
       }
     }
   }
