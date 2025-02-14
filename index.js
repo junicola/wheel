@@ -13,6 +13,13 @@ let rotation = 0;
 let options = [];
 const colors = ["#ea7095", "#ecbac3", "#eeb240", "#cdd1dc", "#858FB3", ];
 
+function resizeCanvas() {
+  const size = Math.min(window.innerWidth * 0.8, 500); // Limita o tamanho máximo
+  canvas.width = size;
+  canvas.height = size;
+  drawWheel();
+}
+
 function drawWheel() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const total = options.length;
@@ -33,6 +40,7 @@ function drawWheel() {
       ctx.fillStyle = "#fff";
       ctx.font = "1.75rem Bai Jamjuree, serif";
       ctx.fillText(options[i], 80, 10);
+      ctx.fillText(options[i], radius * 0.4, 10); 
       ctx.restore();
   }
 }
@@ -83,3 +91,6 @@ btnClose.addEventListener("click", () => {
   popupContainer.style.opacity = "0";
   resultDialog.close();
 });
+
+window.addEventListener("load", resizeCanvas);
+window.addEventListener("resize", resizeCanvas);
