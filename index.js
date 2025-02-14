@@ -14,7 +14,7 @@ let options = [];
 const colors = ["#ea7095", "#ecbac3", "#eeb240", "#cdd1dc", "#858FB3", ];
 
 function resizeCanvas() {
-  const size = Math.min(window.innerWidth * 0.8, 500); // Limita o tamanho máximo
+  const size = Math.min(window.innerWidth * 0.7, 500);
   canvas.width = size;
   canvas.height = size;
   drawWheel();
@@ -92,5 +92,11 @@ btnClose.addEventListener("click", () => {
   resultDialog.close();
 });
 
-window.addEventListener("load", resizeCanvas);
-window.addEventListener("resize", resizeCanvas);
+document.addEventListener("DOMContentLoaded", () => {
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+});
+
+window.addEventListener("load", () => {
+  resizeCanvas();
+});

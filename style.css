@@ -105,6 +105,8 @@ body {
         border: 10px solid rgb(var(--lightPurple));
         background-color: rgb(var(--darkPurple));
         z-index: 1;
+        height: auto;
+        height: 100%;
         aspect-ratio: 1 / 1;
       }
 
@@ -296,10 +298,33 @@ body {
   }
 
   @media screen and (max-width: 600px) {
+    .title {
+      font-size: 2.5rem;
+    }
+
     .content {
       .wheel-container {
         .wheel-title {
           width: 70vw;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .content {
+      .wheel-container {
+        .wheel-title {
+          width: 70vw;
+        }
+      }
+
+      .options {
+        width: 100%;
+
+        #options-input {
+          min-width: 100%;
+          width: 100%;
         }
       }
     }
