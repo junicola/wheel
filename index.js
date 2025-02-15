@@ -14,7 +14,7 @@ let options = [];
 const colors = ["#ea7095", "#ecbac3", "#eeb240", "#cdd1dc", "#858FB3", ];
 
 function resizeCanvas() {
-  if(window.innerWidth < 600) {
+  if(window.innerWidth < 768) {
     const container = document.querySelector(".content");
     const containerWidth = container.clientWidth;
     const containerHeight = container.clientHeight;
@@ -49,13 +49,14 @@ function drawWheel() {
       ctx.translate(centerX, centerY);
       ctx.rotate(i * angleStep + angleStep / 2);
       ctx.fillStyle = "#fff";
-      ctx.font = "1.75rem Bai Jamjuree, serif";
-      ctx.fillText(options[i], radius * 0.4, 10)
+      ctx.font = "1.15rem Bai Jamjuree, serif";
+      ctx.fillText(options[i], radius * 0.2, 10)
       ctx.restore();
   }
 }
 
 function updateWheel() {
+  localStorage.setItem("options", textarea.value);
   options = textarea.value.split("\n").map(e => e.trim()).filter(e => e !== "");
   drawWheel();
 }
@@ -68,6 +69,7 @@ textarea.addEventListener("input", () => {
 
 btnSpin.onclick = function () {
   if(options.length > 0) {
+    btnSpin.disabled = true;
     const randomRotation = Math.ceil(Math.random() * 5000) + rotation;
     rotation = randomRotation;
   
@@ -89,7 +91,7 @@ btnSpin.onclick = function () {
         popupContainer.style.visibility = "visible";
         popupContainer.style.opacity = "1";
         sparkleSound.play()
-        resultDialog.showModal();
+        btnSpin.disabled = false;
     }, 2000);
   } else {
     document.getElementById("options-input").focus()
@@ -104,5 +106,10 @@ btnClose.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   resizeCanvas();
+
   window.addEventListener("resize", resizeCanvas);
+
+  const localOptions = localStorage.getItem("options");
+  textarea.value = localOptions || "Opção 1\nOpção 2\nOpção 3\nOpção 4\nOpção 5";
+  updateWheel();
 });
