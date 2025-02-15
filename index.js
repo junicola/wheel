@@ -14,10 +14,17 @@ let options = [];
 const colors = ["#ea7095", "#ecbac3", "#eeb240", "#cdd1dc", "#858FB3", ];
 
 function resizeCanvas() {
-  const size = Math.min(window.innerWidth * 0.7, 500);
-  canvas.width = size;
-  canvas.height = size;
-  drawWheel();
+  if(window.innerWidth < 600) {
+    const container = document.querySelector(".content");
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+  
+    const size = Math.min(containerWidth, containerHeight);
+    canvas.width = size - 82;
+    canvas.height = size - 80;
+  
+    drawWheel();
+  }
 }
 
 function drawWheel() {
@@ -26,21 +33,24 @@ function drawWheel() {
   if (total === 0) return;
   
   const angleStep = (2 * Math.PI) / total;
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const radius = centerX;
+
   for (let i = 0; i < total; i++) {
       ctx.beginPath();
-      ctx.moveTo(250, 250);
-      ctx.arc(250, 250, 250, i * angleStep, (i + 1) * angleStep);
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, i * angleStep, (i + 1) * angleStep);
       ctx.closePath();
       ctx.fillStyle = colors[i % colors.length];
       ctx.fill();
       
       ctx.save();
-      ctx.translate(250, 250);
+      ctx.translate(centerX, centerY);
       ctx.rotate(i * angleStep + angleStep / 2);
       ctx.fillStyle = "#fff";
       ctx.font = "1.75rem Bai Jamjuree, serif";
-      ctx.fillText(options[i], 80, 10);
-      ctx.fillText(options[i], radius * 0.4, 10); 
+      ctx.fillText(options[i], radius * 0.4, 10)
       ctx.restore();
   }
 }
@@ -95,8 +105,4 @@ btnClose.addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", () => {
   resizeCanvas();
   window.addEventListener("resize", resizeCanvas);
-});
-
-window.addEventListener("load", () => {
-  resizeCanvas();
 });
