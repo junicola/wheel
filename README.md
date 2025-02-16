@@ -1,5 +1,5 @@
 # Spin the Wheel 🎡
-O Spin the Wheel (Rode a roda) é um website interativo que permite aos usuários inserir várias opções e sortear uma delas de forma aleatória. Ideal para fazer sorteios! Acesse clicando [aqui](https://junicola.github.io/wheel/).
+O Spin the Wheel (Rode a roda) é um website interativo que permite aos usuários inserir várias opções e sortear uma delas de forma aleatória. Ideal para fazer sorteios! Acesse clicando <a href="https://junicola.github.io/wheel/" target="_blank">aqui</a>.
 
 ## 💻 Tecnologias Utilizadas
 HTML: Estruturação da página.

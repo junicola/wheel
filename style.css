@@ -150,7 +150,7 @@ body {
         outline: 4px solid;
         outline-color: transparent;
         transition: 0.5s;
-        top: -2px;
+        top: 0;
 
         &:focus {
           outline-color: rgb(var(--pink));
